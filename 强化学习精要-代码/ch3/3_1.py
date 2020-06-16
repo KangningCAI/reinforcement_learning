@@ -1,10 +1,10 @@
 import numpy as np
-def gd(x_start, step, g):   
+def gd(x_start, step, g):
     x = x_start
     for i in range(20):
         grad = g(x)
         x -= grad * step
-        print '[ Epoch {0} ] grad = {1}, x = {2}'.format(i, grad, x)
+        print( '[ Epoch {0} ] grad = {1}, x = {2}'.format(i, grad, x) )
         if abs(grad) < 1e-6:
             break;
     return x

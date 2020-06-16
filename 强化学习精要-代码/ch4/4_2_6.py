@@ -1,4 +1,8 @@
-import tensorflow as tf
+# import tensorflow as tf
+import tensorflow.compat.v1 as tf
+import tensorflow as tf_ori
+tf.disable_v2_behavior()
+
 import numpy as np
 import sys
 
@@ -13,7 +17,7 @@ def wrong1():
             g = tf.gradients(f, x)
     with tf.Session() as s:
         s.run(tf.global_variables_initializer())
-        print s.run([f,g], feed_dict={x:1})
+        print( s.run([f,g], feed_dict={x:1}))
 
 def wrong2():
     with tf.name_scope('normal'):
@@ -29,7 +33,7 @@ def wrong2():
                 g = tf.gradients(f, x)
     with tf.Session() as s:
         s.run(tf.global_variables_initializer())
-        print s.run([f, g], feed_dict={x: 1})
+        print( s.run([f, g], feed_dict={x: 1}))
 
 def right1():
     with tf.name_scope('normal'):
@@ -42,7 +46,7 @@ def right1():
         g = tf.gradients(f, x)
     with tf.Session() as s:
         s.run(tf.global_variables_initializer())
-        print s.run([f, g], feed_dict={x: 1})
+        print( s.run([f, g], feed_dict={x: 1}))
 
 def right2():
     @tf.RegisterGradient("mult_grad")
@@ -58,7 +62,7 @@ def right2():
         g = tf.gradients(f, x)
     with tf.Session() as s:
         s.run(tf.global_variables_initializer())
-        print s.run([f, g], feed_dict={x: 1})
+        print( s.run([f, g], feed_dict={x: 1}))
 
 if __name__ == '__main__':
     if sys.argv[1] == '1':
