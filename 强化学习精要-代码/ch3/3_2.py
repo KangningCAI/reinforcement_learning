@@ -8,12 +8,12 @@ def gd(x_start, step, g):
         grad = g(x)
         x -= grad * step
         xarr.append(x.copy())
-        print '[ Epoch {0} ] grad = {1}, x = {2}'.format(i, grad, x)
+        print( '[ Epoch {0} ] grad = {1}, x = {2}'.format(i, grad, x) )
         if sum(abs(grad)) < 1e-6:
             break;
     return x, xarr
 
-def momentum(x_start, step, g, discount = 0.7):   
+def momentum(x_start, step, g, discount = 0.7):
     x = np.array(x_start, dtype='float64')
     pre_grad = np.zeros_like(x)
     xarr = [x.copy()]
@@ -22,8 +22,8 @@ def momentum(x_start, step, g, discount = 0.7):
         pre_grad = pre_grad * discount + grad * step
         x -= pre_grad
         xarr.append(x.copy())
-      
-        print '[ Epoch {0} ] grad = {1}, x = {2}'.format(i, grad, x)
+
+        print( '[ Epoch {0} ] grad = {1}, x = {2}'.format(i, grad, x) )
         if sum(abs(grad)) < 1e-6:
             break;
     return x, xarr
@@ -64,22 +64,22 @@ contour(X, Y, Z, x_arr)
 res, x_arr = gd([150,75], 0.02, g)
 contour(X, Y, Z, x_arr)
 
-# momentum 
+# momentum
 res, x_arr = momentum([150,75], 0.016, g)
 contour(X, Y, Z, x_arr)
 
-def nesterov(x_start, step, g, discount = 0.7):   
+def nesterov(x_start, step, g, discount = 0.7):
     x = np.array(x_start, dtype='float64')
     pre_grad = np.zeros_like(x)
     x_arr = [x.copy()]
     for i in range(50):
         x_future = x - step * discount * pre_grad
         grad = g(x_future)
-        pre_grad = pre_grad * 0.7 + grad 
+        pre_grad = pre_grad * 0.7 + grad
         x -= pre_grad * step
         x_arr.append(x.copy())
-        
-        print '[ Epoch {0} ] grad = {1}, x = {2}'.format(i, grad, x)
+
+        print( '[ Epoch {0} ] grad = {1}, x = {2}'.format(i, grad, x) )
         if abs(sum(grad)) < 1e-6:
             break;
     return x, x_arr
