@@ -22,4 +22,4 @@ with tf.Session() as sess:
         if iter % 10000 == 0:
             print('{}:loss={}'.format(iter, loss_val))
     graph = tf.get_default_graph()
-    print graph.get_operations()
+    print(graph.get_operations())

@@ -26,8 +26,8 @@ def importance_sampling_test(ori_sigma, sample_sigma):
 
     origin = np.array(origin)
     isample = np.array(isample)
-    print np.mean(origin), np.std(origin)
-    print np.mean(isample), np.std(isample)
+    print( np.mean(origin), np.std(origin))
+    print( np.mean(isample), np.std(isample) )
 
 importance_sampling_test(1.0, 1.0)
 importance_sampling_test(1.0, 0.5)
