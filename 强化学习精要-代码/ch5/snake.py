@@ -4,7 +4,7 @@ from gym.spaces import Discrete
 
 class SnakeEnv(gym.Env):
     SIZE=100
-  
+
     def __init__(self, ladder_num, dices):
         self.ladder_num = ladder_num
         self.dices = dices
@@ -12,12 +12,12 @@ class SnakeEnv(gym.Env):
         self.observation_space=Discrete(self.SIZE+1)
         self.action_space=Discrete(len(dices))
 
-        for k,v in self.ladders.items():
+        for k,v in list(self.ladders.items()):
             self.ladders[v] = k
-            print 'ladders info:'
-            print self.ladders
-            print 'dice ranges:'
-            print self.dices
+            print( 'ladders info:')
+            print( self.ladders)
+            print( 'dice ranges:')
+            print( self.dices)
         self.pos = 1
 
     def reset(self):
@@ -50,6 +50,6 @@ if __name__ == '__main__':
     env.reset()
     while True:
         state, reward, terminate, _ = env.step(0)
-        print reward, state
+        print( reward, state)
         if terminate == 1:
             break

@@ -16,9 +16,9 @@ def test_easy():
         sum_opt += eval_game(env, policy_ref)
         sum_0 += eval_game(env, policy_0)
         sum_1 += eval_game(env, policy_1)
-    print 'opt avg={}'.format(sum_opt / 10000.0)
-    print '0 avg={}'.format(sum_0 / 10000.0)
-    print '1 avg={}'.format(sum_1 / 10000.0)
+    print( 'opt avg={}'.format(sum_opt / 10000.0))
+    print( '0 avg={}'.format(sum_0 / 10000.0))
+    print( '1 avg={}'.format(sum_1 / 10000.0))
 
 class PolicyIteration(object):
 
@@ -69,7 +69,7 @@ class PolicyIteration(object):
             ret = self.policy_improvement(agent)
             if not ret:
                 break
-        print 'Iter {} rounds converge'.format(iteration)
+        print( 'Iter {} rounds converge'.format(iteration))
 
 
 def policy_iteration_demo1():
@@ -77,25 +77,25 @@ def policy_iteration_demo1():
     agent = TableAgent(env)
     pi_algo = PolicyIteration()
     pi_algo.policy_iteration(agent)
-    print 'return_pi={}'.format(eval_game(env, agent))
-    print agent.pi
+    print( 'return_pi={}'.format(eval_game(env, agent)))
+    print( agent.pi)
 
 def policy_iteration_demo2():
     env = SnakeEnv(10, [3,6])
     agent = TableAgent(env)
     agent.pi[:]=0
-    print 'return3={}'.format(eval_game(env,agent))
+    print( 'return3={}'.format(eval_game(env,agent)))
     agent.pi[:]=1
-    print 'return6={}'.format(eval_game(env,agent))
+    print( 'return6={}'.format(eval_game(env,agent)))
     agent.pi[97:100]=0
-    print 'return_ensemble={}'.format(eval_game(env,agent))
+    print( 'return_ensemble={}'.format(eval_game(env,agent)))
     pi_algo = PolicyIteration()
     pi_algo.policy_iteration(agent)
-    print 'return_pi={}'.format(eval_game(env,agent))
-    print agent.pi
+    print( 'return_pi={}'.format(eval_game(env,agent)))
+    print( agent.pi)
 
 if __name__ == '__main__':
-    # test_easy()
+    test_easy()
     policy_iteration_demo1()
     policy_iteration_demo2()
 

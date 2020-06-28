@@ -19,7 +19,7 @@ def policy_iteration_demo():
     pi_algo = PolicyIterationWithTimer()
     with timer('Timer PolicyIter'):
         pi_algo.policy_iteration(agent)
-    print 'return_pi={}'.format(eval_game(env,agent))
+    print( 'return_pi={}'.format(eval_game(env,agent)))
 
 def value_iteration_demo():
     np.random.seed(0)
@@ -28,7 +28,7 @@ def value_iteration_demo():
     pi_algo = ValueIteration()
     with timer('Timer ValueIter'):
         pi_algo.value_iteration(agent)
-    print 'return_pi={}'.format(eval_game(env,agent))
+    print( 'return_pi={}'.format(eval_game(env,agent)))
 
 def generalized_iteration_demo():
     np.random.seed(0)
@@ -37,7 +37,7 @@ def generalized_iteration_demo():
     pi_algo = GeneralizedPolicyIteration()
     with timer('Timer GeneralizedIter'):
         pi_algo.generalized_policy_iteration(agent)
-    print 'return_pi={}'.format(eval_game(env,agent))
+    print( 'return_pi={}'.format(eval_game(env,agent)))
 
 if __name__ == '__main__':
     policy_iteration_demo()

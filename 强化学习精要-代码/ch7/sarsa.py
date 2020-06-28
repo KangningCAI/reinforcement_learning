@@ -24,7 +24,7 @@ class SARSA(object):
                     agent.value_q[prev_state][prev_act]) / \
                     agent.value_n[prev_state][prev_act]
 
-            prev_act = act  
+            prev_act = act
             prev_state = state
             state = next_state
 
@@ -55,24 +55,24 @@ def monte_carlo_demo():
     mc = MonteCarlo(0.5)
     with timer('Timer Monte Carlo Iter'):
         mc.monte_carlo_opt(agent, env)
-    print 'return_pi={}'.format(eval_game(env,agent))
-    print agent.pi
+    print( 'return_pi={}'.format(eval_game(env,agent)))
+    print( agent.pi)
 
     np.random.seed(101)
     agent2 = TableAgent(env)
     pi_algo = PolicyIteration()
     with timer('Timer PolicyIter'):
         pi_algo.policy_iteration(agent2)
-    print 'return_pi={}'.format(eval_game(env,agent2))
-    print agent2.pi
+    print( 'return_pi={}'.format(eval_game(env,agent2)))
+    print( agent2.pi)
 
     np.random.seed(101)
     agent3 = ModelFreeAgent(env)
     mc = SARSA(0.5)
-    with timer('Timer Monte Carlo Iter'):
+    with timer('Timer Monte SARSA Iter'):
         mc.sarsa(agent3, env)
-    print 'return_pi={}'.format(eval_game(env,agent3))
-    print agent3.pi
+    print( 'return_pi={}'.format(eval_game(env,agent3)))
+    print( agent3.pi)
 
 if __name__ == '__main__':
     monte_carlo_demo()
