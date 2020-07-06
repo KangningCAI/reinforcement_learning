@@ -84,9 +84,23 @@ class TableAgent(object):
     def play(self, state):
         return self.pi[state]
 
-   
+#%%
+class ModelFreeAgent(object):
+    def __init__(self, env):
+        self.state_num = env.observation_space.n
+        self.action_num = env.action_space.n
+        
+        self.pi = np.array([0 for state in range(0, self.state_num)])
+        self.value_q = np.zeros((self.state_num, self.action_num))
+        self.value_n = np.zeros((self.state_num, self.action_num))
+        self.gamma = 0.8
 
-
+    def play(self, state, epsilon=0):
+        if np.random.rand() < epsilon:
+            return np.random.randint(self.action_num)
+        else:
+            # return np.argmax( self.value_q[state, :] )
+            return self.pi[state]
 #%%
 def eval_game(env, policy):
     state = env.reset()
@@ -96,6 +110,8 @@ def eval_game(env, policy):
         if isinstance(policy, list):
             act = policy[state]
         elif isinstance(policy, TableAgent):
+            act = policy.play(state)
+        elif isinstance(policy, ModelFreeAgent):
             act = policy.play(state)
         else:
             raise Exception("Illegal policy")
